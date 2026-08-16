@@ -9,7 +9,7 @@ useHead({
 })
 
 const title = 'William Plancke — Data Scientist'
-const description = 'Portfolio of William Plancke, a data scientist turning complex data into clear, useful insights.'
+const description = 'Portfolio of data science student William Plancke, showing off various projects he has worked on throughout his academic career.'
 
 useSeoMeta({
   title,
