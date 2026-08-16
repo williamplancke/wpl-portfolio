@@ -1,76 +1,137 @@
+<script setup lang="ts">
+const projectSections = [
+  {
+    id: 'bachelors',
+    title: 'Bachelor\'s',
+    description: 'University-issued projects created to learn and practise standard data science techniques.',
+    projects: [
+      {
+        number: '01',
+        title: 'Hotel customer value predictor',
+        description: 'Performing regression and classification on a simulated dataset to predict customer value. This project has also been made production-ready with AzureML and Kubernetes.',
+        tags: ['Simulated', 'Machine learning'],
+        repository: 'https://github.com/williamplancke/mlops-project'
+      }
+    ]
+  },
+  {
+    id: 'strategy-simulation',
+    title: 'Strategy & simulation',
+    description: 'Strategy games provide vast simulated environments with rich data covering economies, warfare, populations, and more. Their detail and high-throughput data make them ideal environments for machine learning experiments.',
+    projects: [
+      {
+        number: '01',
+        title: 'EU4 Province Value Estimator',
+        description: 'Collection of province data from both the EU4 source code and real multiplayer save files to train a regression model on \'province value\' based on player behavior.',
+        tags: ['Europa Universalis 4', 'Data cleaning and preprocessing'],
+        repository: 'https://github.com/williamplancke/eu4-pve-collection-training'
+      }
+    ]
+  }
+]
+</script>
+
 <template>
-  <div>
-    <UPageHero
-      title="Nuxt Starter Template"
-      description="A production-ready starter template powered by Nuxt UI. Build beautiful, accessible, and performant applications in minutes, not hours."
-      :links="[{
-        label: 'Get started',
-        to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-        target: '_blank',
-        trailingIcon: 'i-lucide-arrow-right',
-        size: 'xl'
-      }, {
-        label: 'Use this template',
-        to: 'https://github.com/nuxt-ui-templates/starter',
-        target: '_blank',
-        icon: 'i-simple-icons-github',
-        size: 'xl',
-        color: 'neutral',
-        variant: 'subtle'
-      }]"
-    />
+  <div class="site-shell">
+    <header class="site-header page-width">
+      <a
+        class="wordmark"
+        href="#top"
+        aria-label="William Plancke, back to top"
+      >
+        WP<span class="wordmark-dot">.</span>
+      </a>
 
-    <UPageSection
-      id="features"
-      title="Everything you need to build modern Nuxt apps"
-      description="Start with a solid foundation. This template includes all the essentials for building production-ready applications with Nuxt UI's powerful component system."
-      :features="[{
-        icon: 'i-lucide-rocket',
-        title: 'Production-ready from day one',
-        description: 'Pre-configured with TypeScript, ESLint, Tailwind CSS, and all the best practices. Focus on building features, not setting up tooling.'
-      }, {
-        icon: 'i-lucide-palette',
-        title: 'Beautiful by default',
-        description: 'Leveraging Nuxt UI\'s design system with automatic dark mode, consistent spacing, and polished components that look great out of the box.'
-      }, {
-        icon: 'i-lucide-zap',
-        title: 'Lightning fast',
-        description: 'Optimized for performance with SSR/SSG support, automatic code splitting, and edge-ready deployment. Your users will love the speed.'
-      }, {
-        icon: 'i-lucide-blocks',
-        title: '100+ components included',
-        description: 'Access Nuxt UI\'s comprehensive component library. From forms to navigation, everything is accessible, responsive, and customizable.'
-      }, {
-        icon: 'i-lucide-code-2',
-        title: 'Developer experience first',
-        description: 'Auto-imports, hot module replacement, and TypeScript support. Write less boilerplate and ship more features.'
-      }, {
-        icon: 'i-lucide-shield-check',
-        title: 'Built for scale',
-        description: 'Enterprise-ready architecture with proper error handling, SEO optimization, and security best practices built-in.'
-      }]"
-    />
+      <nav aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+      </nav>
+    </header>
 
-    <UPageSection>
-      <UPageCTA
-        title="Ready to build your next Nuxt app?"
-        description="Join thousands of developers building with Nuxt and Nuxt UI. Get this template and start shipping today."
-        variant="subtle"
-        :links="[{
-          label: 'Start building',
-          to: 'https://ui.nuxt.com/docs/getting-started/installation/nuxt',
-          target: '_blank',
-          trailingIcon: 'i-lucide-arrow-right',
-          color: 'neutral'
-        }, {
-          label: 'View on GitHub',
-          to: 'https://github.com/nuxt-ui-templates/starter',
-          target: '_blank',
-          icon: 'i-simple-icons-github',
-          color: 'neutral',
-          variant: 'outline'
-        }]"
-      />
-    </UPageSection>
+    <main id="top">
+      <section
+        class="hero page-width"
+        aria-labelledby="page-title"
+      >
+        <p class="eyebrow">
+          AI Student
+        </p>
+        <h1 id="page-title">
+          William<br>
+          <span>Plancke</span>
+        </h1>
+      </section>
+
+      <section
+        id="projects"
+        class="projects page-width section-grid"
+        aria-labelledby="projects-title"
+      >
+        <h2
+          id="projects-title"
+          class="section-label"
+        >
+          01 / Projects
+        </h2>
+        <div class="section-content">
+          <section
+            v-for="section in projectSections"
+            :key="section.id"
+            class="project-group"
+            :aria-labelledby="`${section.id}-title`"
+          >
+            <div class="section-heading">
+              <h3 :id="`${section.id}-title`">
+                {{ section.title }}
+              </h3>
+              <p>{{ section.description }}</p>
+            </div>
+
+            <div class="project-list">
+              <article
+                v-for="project in section.projects"
+                :key="project.repository || project.title"
+                class="project-card"
+              >
+                <span class="project-number">{{ project.number }}</span>
+                <div class="project-details">
+                  <h4>{{ project.title }}</h4>
+                  <p>{{ project.description }}</p>
+                  <ul
+                    class="tag-list"
+                    :aria-label="`${project.title} technologies`"
+                  >
+                    <li
+                      v-for="tag in project.tags"
+                      :key="tag"
+                    >
+                      {{ tag }}
+                    </li>
+                  </ul>
+                </div>
+                <a
+                  v-if="project.repository"
+                  class="repo-link"
+                  :href="project.repository"
+                  target="_blank"
+                  rel="noreferrer"
+                  :aria-label="`Open ${project.title} on GitHub`"
+                >
+                  GitHub <span aria-hidden="true">↗</span>
+                </a>
+                <span
+                  v-else
+                  class="repo-link repo-link--muted"
+                >Link soon</span>
+              </article>
+            </div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer page-width">
+      <p>© {{ new Date().getFullYear() }} William Plancke</p>
+      <a href="#top">Back to top ↑</a>
+    </footer>
   </div>
 </template>
