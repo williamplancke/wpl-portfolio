@@ -86,8 +86,7 @@ a {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
   grid-template-rows: auto auto auto;
-  min-height: calc(100vh - 96px);
-  padding-block: clamp(72px, 10vw, 136px) 56px;
+  padding-block: clamp(56px, 7vw, 88px) clamp(72px, 8vw, 104px);
 }
 
 .eyebrow,
@@ -305,12 +304,11 @@ a.repo-link:focus-visible {
   .hero {
     display: flex;
     flex-direction: column;
-    min-height: calc(100svh - 76px);
-    padding-block: 64px 32px;
+    padding-block: 48px 64px;
   }
 
   .hero h1 {
-    margin-block: 36px;
+    margin-block: 28px 0;
     font-size: clamp(4.5rem, 25vw, 8rem);
   }
 
